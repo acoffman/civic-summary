@@ -27,11 +27,11 @@ class CivicSummaryReport
       counts['journals'][extract_journal(ei)] += 1
       counts['articles'][ei['pubmed_id']] += 1
       counts['evidence_types'][ei['evidence_type']] += 1
-      counts['evidence_direction'][ei['evidence_direction']] += 1
+      counts['evidence_directions'][ei['evidence_direction']] += 1
       counts['rating'][ei['rating']] += 1
       counts['clinical_significances'][ei['clinical_significance']] += 1
       counts['pubmed_ids'][ei['pubmed_id']] += 1
-      counts['diseases'][ei['disease']['name']] +=1
+      counts['diseases'][ei['disease']['id']] +=1
       ei['drugs'].each do |drug|
         counts['drugs'][drug['id']] +=1
       end
