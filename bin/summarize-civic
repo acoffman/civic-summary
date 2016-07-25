@@ -1,0 +1,6 @@
+#! /usr/bin/env ruby
+
+require 'civic-summary'
+
+#SummaryReport.new.generate!
+SourcesReport.new.generate!

@@ -9,16 +9,15 @@ Requirements:
 
 ```
 brew install imagemagick
-gem install rmagick
-gem install gruff
+bundle install
 ```
 
 ## Usage
 
-Right now there are no flags or options
+Right now there are no flags or options, and its not built into a gem just yet
 
 ```
-ruby summarize.rb
+ruby -I lib/ bin/summarize
 ```
 
 ## LICENSE

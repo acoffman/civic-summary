@@ -1,9 +1,4 @@
-require 'net/http'
-require 'fileutils'
-require 'gruff'
-require 'json'
-
-class CivicSummaryReport
+class SummaryReport
   attr_reader :api_wrapper, :graph_output_dir
 
   def initialize(api_wrapper = CivicEvidenceItems, graph_output_dir = 'graphs')
@@ -67,51 +62,4 @@ class CivicSummaryReport
   def extract_journal(ei)
     ei['citation'].split(',')[-1]
   end
-end
-
-class CivicEvidenceItems
-  attr_reader :server
-
-  def initialize(server = 'https://civic.genome.wustl.edu')
-    @server = server
-  end
-
-  def evidence_items
-    initial_url = "#{server}/api/evidence_items"
-    page = get_page(initial_url)
-    Enumerator.new do |y|
-      page.records.each { |v| y << v }
-      while url = page.next_page_url
-        page = get_page(url)
-        page.records.each { |v| y << v }
-      end
-    end
-  end
-
-  private
-  def get_page(url)
-    res = Net::HTTP.get_response(URI.parse(url))
-    raise StandardError.new("Request Failed!") unless res.code == '200'
-    CivicResponse.new(res.body)
-  end
-
-  class CivicResponse
-    attr_reader :data
-
-    def initialize(body)
-      @data = JSON.parse(body)
-    end
-
-    def records
-      data['records']
-    end
-
-    def next_page_url
-      data['_meta']['links']['next']
-    end
-  end
-end
-
-if __FILE__ == $0
-  CivicSummaryReport.new.generate!
 end

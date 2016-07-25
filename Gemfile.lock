@@ -1,0 +1,21 @@
+PATH
+  remote: .
+  specs:
+    civic-summary (0.0.1)
+      gruff (~> 0.7.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    gruff (0.7.0)
+      rmagick (~> 2.13, >= 2.13.4)
+    rmagick (2.15.4)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  civic-summary!
+
+BUNDLED WITH
+   1.11.2
