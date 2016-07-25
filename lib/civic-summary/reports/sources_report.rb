@@ -53,7 +53,7 @@ class SourcesReport
   end
 
   def generate_author_bar_chart(authors)
-    g = Gruff::SideBar.new
+    g = Gruff::SideBar.new('1600x1200')
     g.title = 'Publication count by author'
     g.x_axis_label = 'Publication Count'
     g.y_axis_label = 'Author Name'
